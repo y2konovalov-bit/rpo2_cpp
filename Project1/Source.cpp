@@ -308,9 +308,13 @@ int main()
 			std::cout << "\t\t\tСумма за яблочный сок" << TotalApple;
 			Paycheck += TotalApple;
 			//апельсин
-
+			int TotalOrange = LitresOrangeJuice * costFruitJuice[1];
+			std::cout << "\t\t\tСумма за апельсиновый сок" << TotalOrange;
+			Paycheck += TotalOrange;
 			//абрикос
-			
+			int TotalApricot = LitresApricotJuice * costFruitJuice[2];
+			std::cout << "\t\t\tСумма за абрикосовый сок" << TotalApricot;
+			Paycheck += TotalApricot;
 			//груша
 
 			//томатный
