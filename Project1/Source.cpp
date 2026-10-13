@@ -4,7 +4,7 @@
 int main()
 {
 	short UserInput = 0;
-	
+
 
 	SetConsoleCP(CP_UTF8);
 	SetConsoleOutputCP(CP_UTF8);
@@ -21,9 +21,12 @@ int main()
 	short LitresGarlicTea = 0; //чесночный
 	short LitresParsleyTea = 0; //петрушевый
 
+	short LitresBoyarishnik = 0; //боярышник
+
 	int costFruitJuice[]{ 100, 150, 135, 70 };
 	int costVegetableJuice[]{ 105, 55, 95 };
 	int costTea[]{ 250, 300 };
+	int costTincture[]{ 1000 };
 
 	int Paycheck = 0;
 
@@ -35,8 +38,9 @@ int main()
 		std::cout << "\n\n";
 		std::cout << "\t\t\t--- 1: Фруктовые соки ---\n";
 		std::cout << "\t\t\t--- 2:   Овощные соки ---\n";
-		std::cout << "\t\t\t--- 3:      Чаи       ---\n\n";
-		std::cout << "\t\t\t--- 4: Оплатить заказ ---\n\n";
+		std::cout << "\t\t\t--- 3:      Чаи       ---\n";
+		std::cout << "\t\t\t--- 4:    Настойки    ---\n\n";
+		std::cout << "\t\t\t--- 5: Оплатить заказ ---\n\n";
 		std::cout << "Ввод: ";
 		std::cin >> UserInput;
 		system("cls");
@@ -136,7 +140,7 @@ int main()
 			}
 
 		}
-		
+
 		if (UserInput == 2)
 		{
 			std::cout << "\t\t\t\tВы выбрали категорию \"Овощные соки\"\n";
@@ -271,6 +275,38 @@ int main()
 
 		if (UserInput == 4)
 		{
+			std::cout << "\t\t\t\tВы выбрали категорию \"Настойки\"\n";
+			std::cout << "\t\t\t\tВ наличии имеются следующие товары:\n";
+			std::cout << "\t\t\t\t1. Боярышник\n";
+			std::cout << "\t\t\t\t0. Отмена\n\n";
+			std::cout << "\t\t\t Выберите товар и введите соответствующую цифру: ";
+			std::cin >> UserInput;
+
+			if (UserInput == 1)
+			{
+				if (UserInput == 1)
+				{
+					std::cout << "\t\t\t\tВведите количество литров настойки\n";
+					std::cout << "\t\t\t\tВведите 0, чтобы выйти.";
+					std::cout << "---";
+					std::cin >> UserInput;
+					if (UserInput == 0)
+					{
+						system("cls");
+						continue;
+					}
+					else
+					{
+						LitresBoyarishnik += UserInput;
+						system("cls");
+						continue;
+					}
+				}
+			}
+		}
+
+		if (UserInput == 5)
+		{
 			// при покупке >=3л петрушевого чая скидка 5%
 			if (LitresParsleyTea >= 3)
 			{
@@ -280,7 +316,7 @@ int main()
 				std::cout << "\t\t\tКол-во литров: " << LitresParsleyTea << "\n\n";
 				Paycheck += TotalParsley;
 			}
-			else if (LitresParsleyTea > 0 and LitresParsleyTea < 3)
+			else if (LitresParsleyTea > 0 && LitresParsleyTea < 3)
 			{
 				int TotalParsley = LitresParsleyTea * costTea[1];
 				std::cout << "\t\t\tСумма за чай: " << TotalParsley << "\n";
@@ -298,7 +334,7 @@ int main()
 				std::cout << "\t\t\tКол-во литров в подарок: " << TotalNoPaidLitresOpinionJuice << "\n\n";
 				Paycheck += TotalOpinion;
 			}
-			else if (LitresCucumberJuice > 0 and LitresCucumberJuice < 4)
+			else if (LitresOpinionJuice > 0 && LitresOpinionJuice < 4)
 			{
 				int TotalOpinion = LitresOpinionJuice * costVegetableJuice[1];
 				std::cout << "\t\t\tСумма за Луковый сок: " << TotalOpinion << "\n";
@@ -345,14 +381,6 @@ int main()
 				std::cout << "\t\t\tКол-во литров: " << LitresTomatoJuice << "\n\n";
 				Paycheck += TotalTomato;
 			}
-			//луковый
-			if (LitresOpinionJuice > 0)
-			{
-				int TotalOpinion = LitresOpinionJuice * costVegetableJuice[1];
-				std::cout << "\t\t\tСумма за луковый сок: " << TotalOpinion << "\n";
-				std::cout << "\t\t\tКол-во литров: " << LitresOpinionJuice << "\n\n";
-				Paycheck += TotalOpinion;
-			}
 			//огуречный
 			if (LitresCucumberJuice > 0)
 			{
@@ -361,9 +389,28 @@ int main()
 				std::cout << "\t\t\tКол-во литров: " << LitresCucumberJuice << "\n\n";
 				Paycheck += TotalCucumber;
 			}
+
+			//проверка условия с боярышником(если есть боярышник и сок в одном чеке то сок покупаем, а боярышник отменяется и блокируется доступ к покупке)
+			if (LitresBoyarishnik != 0)
+			{
+				if (LitresAppleJuice > 0 || LitresOrangeJuice > 0 || LitresApricotJuice > 0 || LitresPearJuice > 0)
+				{
+					LitresBoyarishnik = 0;
+					std::cout << "\t\t\tНельзя брать настойки и фруктовые соки вместе!\n";
+					std::cout << "\t\t\tВаша настойка аннулируется и блокируется покупка настоек\n\n";
+				}
+				else
+				{
+					int TotalBoyarishnik = LitresBoyarishnik * costTincture[0];
+					std::cout << "\t\t\tСумма за боярышник: " << TotalBoyarishnik;
+					std::cout << "\t\t\tКол-во литров: " << LitresBoyarishnik;
+					Paycheck += TotalBoyarishnik;
+				}
+
+			}
 			// вся сумма
-			
-			std::cout << "\t\tИтого: " << Paycheck;
+
+			std::cout << "\t\tИтого: " << Paycheck << "\n\n\n";
 			break;
 		}
 	}
