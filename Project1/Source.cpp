@@ -305,7 +305,7 @@ int main()
 			}
 		}
 
-		if (UserInput == 5)
+		if (UserInput == 5) 
 		{
 			// при покупке >=3л петрушевого чая скидка 5%
 			if (LitresParsleyTea >= 3)
@@ -411,7 +411,29 @@ int main()
 			// вся сумма
 
 			std::cout << "\t\tИтого: " << Paycheck << "\n\n\n";
-			break;
+			std::cout << "\t\t\tНапишите 0, чтобы вернуться в главное меню: ";
+			std::cin >> UserInput;
+			if (UserInput == 0)
+			{
+				system("cls");
+
+				LitresAppleJuice = 0; //яблоко
+				LitresOrangeJuice = 0; //апельсин
+				LitresApricotJuice = 0; //абрикос
+				LitresPearJuice = 0; //груша
+
+				LitresTomatoJuice = 0; //томатный
+				LitresOpinionJuice = 0; //луковый
+				LitresCucumberJuice = 0; //огуречный
+
+				LitresGarlicTea = 0; //чесночный
+				LitresParsleyTea = 0; //петрушевый
+
+				LitresBoyarishnik = 0; //боярышник
+				Paycheck = 0;
+				continue;
+			}
+			
 		}
 	}
 
