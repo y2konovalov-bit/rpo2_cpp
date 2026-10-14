@@ -1,6 +1,8 @@
 #include <iostream>
 #include <Windows.h>
 
+#include <string>
+/*
 int main()
 {
 	short UserInput = 0;
@@ -436,6 +438,77 @@ int main()
 			
 		}
 	}
+
+	return 0;
+}
+*/
+
+
+//void F00(int *num)
+//{
+//	*num += 3;
+//
+//}
+//int F01(int num)
+//{ 
+//	return num += 3;
+//}
+void swapper(int* a, int* b) // int* a - адреса значений переменных
+{
+	int c = *a; // в переменную с передается значение а(* - по адресу ячейки ищет значение)
+	*a = *b; // в значение переменной а передается значение переменной b
+	*b = c; // в значение переменной b передается переменная с
+}
+
+int main()
+{
+	SetConsoleCP(CP_UTF8);
+	SetConsoleOutputCP(CP_UTF8);
+	srand(time(NULL));
+
+//	int a = 5;
+	//std::cout << a << "\n";
+	//F00(&a);
+	//std::cout << a << "\n";
+
+	int one = 5, two = 10;
+	std::cout << one << " " << two << "\n";
+	swapper(&one, &two); // & - передает адрес переменной
+	std::cout << one << " " << two << "\n";
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*	int b = 1;
+	int* ptr = &a;
+
+	std::cout << a << "\n";
+	std::cout << *ptr << "\n";
+	ptr = &b;
+	std::cout << *ptr << "\n";
+	
+	
+	*/
+
+
+
 
 	return 0;
 }
